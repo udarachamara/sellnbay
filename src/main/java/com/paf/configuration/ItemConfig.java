@@ -33,7 +33,11 @@ public class ItemConfig {
   @Bean(name = "entityManagerFactory")
   public LocalContainerEntityManagerFactoryBean entityManagerFactory(
       EntityManagerFactoryBuilder builder, @Qualifier("dataSource") DataSource dataSource) {
+<<<<<<< HEAD
     return builder.dataSource(dataSource).packages("com.paf.model").persistenceUnit("item")
+=======
+    return builder.dataSource(dataSource).packages("com.paf.model").persistenceUnit("foo")
+>>>>>>> udara
         .build();
   }
 
