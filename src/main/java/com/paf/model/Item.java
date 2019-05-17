@@ -1,6 +1,7 @@
 package com.paf.model;
 
-import java.util.Date;
+
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,13 +12,13 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "item")
+@Table(name = "items")
 public class Item {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="item_id_seq")
   @SequenceGenerator(name="item_id_seq", sequenceName="item_id_seq", allocationSize=1)
-  @Column(name = "ID")
+  @Column(name = "ITEM_ID")
   private Long id;
 
   @Column(name = "ITEM_NAME")
@@ -36,10 +37,10 @@ public class Item {
   private String itemStatus;
   
   @Column(name = "ITEM_CREATE_AT")
-  private Date itemCreateAt;
+  private Timestamp itemCreateAt;
   
 	public Item(Long id, String itemName, String itemCategory, double itemPrice, int itemQuantity, String itemStatus,
-			Date itemCreateAt) {
+			Timestamp itemCreateAt) {
 		super();
 		this.id = id;
 		this.itemName = itemName;
@@ -116,12 +117,12 @@ public class Item {
 	}
 
 
-	public Date getItemCreateAt() {
+	public Timestamp getItemCreateAt() {
 		return itemCreateAt;
 	}
 
 
-	public void setItemCreateAt(Date itemCreateAt) {
+	public void setItemCreateAt(Timestamp itemCreateAt) {
 		this.itemCreateAt = itemCreateAt;
 	}
 	

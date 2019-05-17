@@ -18,29 +18,29 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory",
-    basePackages = {"com.paf.repository"})
+@EnableJpaRepositories(entityManagerFactoryRef = "itemEntityManagerFactory",
+		transactionManagerRef = "itemTransactionManager",basePackages = {"com.paf.repository.item"})
 public class ItemConfig {
 
   @Primary
-  @Bean(name = "dataSource")
+  @Bean(name = "itemDataSource")
   @ConfigurationProperties(prefix = "dilshan.datasource")
   public DataSource dataSource() {
     return DataSourceBuilder.create().build();
   }
 
   @Primary
-  @Bean(name = "entityManagerFactory")
+  @Bean(name = "itemEntityManagerFactory")
   public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-      EntityManagerFactoryBuilder builder, @Qualifier("dataSource") DataSource dataSource) {
-    return builder.dataSource(dataSource).packages("com.paf.model").persistenceUnit("item")
+      EntityManagerFactoryBuilder builder, @Qualifier("itemDataSource") DataSource dataSource) {
+    return builder.dataSource(dataSource).packages("com.paf.model").persistenceUnit("items")
         .build();
   }
 
   @Primary
-  @Bean(name = "transactionManager")
+  @Bean(name = "itemTransactionManager")
   public PlatformTransactionManager transactionManager(
-      @Qualifier("entityManagerFactory") EntityManagerFactory entityManagerFactory) {
-    return new JpaTransactionManager(entityManagerFactory);
+      @Qualifier("itemEntityManagerFactory") EntityManagerFactory itemEntityManagerFactory) {
+    return new JpaTransactionManager(itemEntityManagerFactory);
   }
 }

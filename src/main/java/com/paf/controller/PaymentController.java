@@ -1,35 +1,35 @@
 package com.paf.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.paf.model.Item;
-import com.paf.model.Payment;
-import com.paf.repository.ItemRepository;
-import com.paf.repository.PaymentRepository;
 
+import com.paf.model.Payment;
+import com.paf.dao.ItemDAO;
+import com.paf.dao.PaymentDAO;
 @RestController
 public class PaymentController {
 
-  private final ItemRepository itemRepo;
-  private final PaymentRepository paymentRepo;
-
+  private final PaymentDAO paymentDAO;
+	  
   @Autowired
-  PaymentController(ItemRepository itemRepo, PaymentRepository paymentRepo) {
-    this.itemRepo = itemRepo;
-    this.paymentRepo = paymentRepo;
+  PaymentController(PaymentDAO paymentDAO) {
+	    this.paymentDAO = paymentDAO;
   }
 
-  @RequestMapping("/foobar/{id}")
-  public String fooBar(@PathVariable("id") Long id) {
-    //Foo foo = fooRepo.findById(id);
-    //Bar bar = barRepo.findById(id);
-    
-    return "<input type='text' name='test' value='HELLO WORLD'>";
-
-    //return foo.getFoo() + " " + bar.getBar() + "!";
+  @RequestMapping("/payment/{id}")
+  public ResponseEntity<Payment> getPayment(@PathVariable("id") Long id) {
+	  
+	  Payment payment = paymentDAO.findOne(id);
+	    
+	    if(payment == null) {
+	    	return ResponseEntity.notFound().build();
+	    }
+	    
+	    return ResponseEntity.ok().body(payment);
   }
 
 }

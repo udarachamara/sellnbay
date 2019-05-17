@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "paymentEntityManagerFactory",
-    transactionManagerRef = "paymentTransactionManager", basePackages = {"com.paf.repository"})
+    transactionManagerRef = "paymentTransactionManager", basePackages = {"com.paf.repository.payment"})
 public class PaymentConfig {
 
   @Bean(name = "paymentDataSource")
@@ -30,7 +30,7 @@ public class PaymentConfig {
   @Bean(name = "paymentEntityManagerFactory")
   public LocalContainerEntityManagerFactoryBean paymentEntityManagerFactory(
       EntityManagerFactoryBuilder builder, @Qualifier("paymentDataSource") DataSource dataSource) {
-    return builder.dataSource(dataSource).packages("com.paf.model").persistenceUnit("payment")
+    return builder.dataSource(dataSource).packages("com.paf.model").persistenceUnit("payments")
         .build();
   }
 
