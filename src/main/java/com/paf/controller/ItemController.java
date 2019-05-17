@@ -1,12 +1,22 @@
 package com.paf.controller;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paf.model.Item;
+import com.paf.model.Payment;
 import com.paf.dao.ItemDAO;
 
 @RestController
@@ -18,17 +28,66 @@ public class ItemController {
   ItemController(ItemDAO itemDAO) {
     this.itemDAO = itemDAO;
   }
+  
+	/* to save an item*/
+	@PostMapping("/items")
+	public Item createItem(@Valid @RequestBody Item item) {
+		return itemDAO.save(item);
+	}
+	
+	/*get all items*/
+	@GetMapping("/items")
+	public List<Item> getAllItems(){
+		return itemDAO.findAll();
+	}
 
-  @RequestMapping("/item/{id}")
-  public ResponseEntity<Item> getItem(@PathVariable("id") Long id) {
-	  
-    Item item = itemDAO.findOne(id);
-    
-    if(item == null) {
-    	return ResponseEntity.notFound().build();
-    }
-    
-    return ResponseEntity.ok().body(item);
-  }
+	/*get item by itemid*/
+	@GetMapping("/items/{id}")
+	public ResponseEntity<Item> getItemById(@PathVariable(value="id") Long itemid){
+		
+		Item item= itemDAO.findOne(itemid);
+		
+		if(item==null) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok().body(item);
+		
+	}
+	
+	/*update an item by itemid*/
+	@PutMapping("/items/{id}")
+	public ResponseEntity<Item> updateItem(@PathVariable(value="id") Long itemid,@Valid @RequestBody Item itemDetails){
+		
+		Item item=itemDAO.findOne(itemid);
+		if(item==null) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		item.setItemName(itemDetails.getItemName());
+		item.setItemCategory(itemDetails.getItemCategory());
+		item.setItemPrice(itemDetails.getItemPrice());
+		item.setItemQuantity(itemDetails.getItemQuantity());
+		
+		Item updateEmployee=itemDAO.save(item);
+		return ResponseEntity.ok().body(updateEmployee);
+		
+		
+		
+	}
+	
+	/*Delete an item*/
+	@DeleteMapping("/items/{id}")
+	public ResponseEntity<Item> deleteEmployee(@PathVariable(value="id") Long itemid){
+		
+		Item item = itemDAO.findOne(itemid);
+		if(item==null) {
+			return ResponseEntity.notFound().build();
+		}
+		itemDAO.delete(item);
+		
+		return ResponseEntity.ok().build();
+		
+		
+	}
 
 }
