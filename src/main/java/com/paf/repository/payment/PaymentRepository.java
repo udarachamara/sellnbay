@@ -8,6 +8,5 @@ import com.paf.model.Payment;
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
-  Payment findById(Long id);
 
 }
