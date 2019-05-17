@@ -1,8 +1,1 @@
-com\paf\FooBarController.class
-com\paf\BarDbConfig.class
 com\paf\Application.class
-com\paf\FooDbConfig.class
-com\paf\foo\repo\FooRepository.class
-com\paf\bar\domain\Bar.class
-com\paf\bar\repo\BarRepository.class
-com\paf\foo\domain\Foo.class
