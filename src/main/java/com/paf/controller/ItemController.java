@@ -11,19 +11,19 @@ import com.paf.repository.ItemRepository;
 import com.paf.repository.PaymentRepository;
 
 @RestController
-public class FooBarController {
+public class ItemController {
 
-  private final ItemRepository fooRepo;
-  private final PaymentRepository barRepo;
+  private final ItemRepository itemRepo;
+  private final PaymentRepository paymentRepo;
 
   @Autowired
-  FooBarController(ItemRepository fooRepo, PaymentRepository barRepo) {
-    this.fooRepo = fooRepo;
-    this.barRepo = barRepo;
+  ItemController(ItemRepository itemRepo, PaymentRepository paymentRepo) {
+    this.itemRepo = itemRepo;
+    this.paymentRepo = paymentRepo;
   }
 
-  @RequestMapping("/foobar/{id}")
-  public String fooBar(@PathVariable("id") Long id) {
+  @RequestMapping("/item/{id}")
+  public String getItem(@PathVariable("id") Long id) {
     //Foo foo = fooRepo.findById(id);
     //Bar bar = barRepo.findById(id);
     
