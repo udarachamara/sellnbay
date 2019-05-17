@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paf.model.Item;
-import com.paf.model.Payment;
 import com.paf.dao.ItemDAO;
 
 @RestController
@@ -67,6 +65,7 @@ public class ItemController {
 		item.setItemCategory(itemDetails.getItemCategory());
 		item.setItemPrice(itemDetails.getItemPrice());
 		item.setItemQuantity(itemDetails.getItemQuantity());
+		item.setItemCreateAt(itemDetails.getItemCreateAt());
 		
 		Item updateEmployee=itemDAO.save(item);
 		return ResponseEntity.ok().body(updateEmployee);

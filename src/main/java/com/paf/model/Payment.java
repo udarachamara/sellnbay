@@ -18,12 +18,98 @@ public class Payment {
   @Column(name = "PAYMENTID")
   private Long id;
 
-  @Column(name = "BAR")
-  private String bar;
+  @Column(name = "ORDER_ID")
+  private int orderId;
+  
+  @Column(name = "PAYMENT_METHOD")
+  private String paymentMethod;
+  
+  @Column(name = "TRANSACTION_ID")
+  private int transactionId;
+  
+  @Column(name = "PAYMENT_STATUS")
+  private int paymentStatus;
+  
+  @Column(name = "PAYMENT_CREATE_AT")
+  private int paymentCreateAt;
+
+  
+
+  public Payment(Long id, int orderId,int transactionId,String paymentMethod, int paymentStatus, int paymentCreateAt) {
+	super();
+	this.id = id;
+	this.orderId = orderId;
+	this.transactionId = transactionId;
+	this.paymentMethod = paymentMethod;
+	this.paymentStatus = paymentStatus;
+	this.paymentCreateAt = paymentCreateAt;
+}
 
 
-  Payment() {
+Payment() {
     // Default constructor needed by JPA
   }
+
+
+public Long getId() {
+	return id;
+}
+
+
+public void setId(Long id) {
+	this.id = id;
+}
+
+
+public int getOrderId() {
+	return orderId;
+}
+
+
+public void setOrderId(int orderId) {
+	this.orderId = orderId;
+}
+
+
+public int getTransactionId() {
+	return transactionId;
+}
+
+
+public void setTransactionId(int transactionId) {
+	this.transactionId = transactionId;
+}
+
+
+public String getPaymentMethod() {
+	return paymentMethod;
+}
+
+
+public void setPaymentMethod(String paymentMethod) {
+	this.paymentMethod = paymentMethod;
+}
+
+
+public int getPaymentStatus() {
+	return paymentStatus;
+}
+
+
+public void setPaymentStatus(int paymentStatus) {
+	this.paymentStatus = paymentStatus;
+}
+
+
+public int getPaymentCreateAt() {
+	return paymentCreateAt;
+}
+
+
+public void setPaymentCreateAt(int paymentCreateAt) {
+	this.paymentCreateAt = paymentCreateAt;
+}
+
+
 
 }
