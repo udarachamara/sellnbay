@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory",
     basePackages = {"com.paf.repository"})
-public class FooDbConfig {
+public class ItemConfig {
 
   @Primary
   @Bean(name = "dataSource")

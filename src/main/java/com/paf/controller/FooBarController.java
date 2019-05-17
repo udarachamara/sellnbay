@@ -5,19 +5,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.paf.model.Foo;
+import com.paf.model.Item;
 import com.paf.model.Payment;
-import com.paf.repository.FooRepository;
+import com.paf.repository.ItemRepository;
 import com.paf.repository.PaymentRepository;
 
 @RestController
 public class FooBarController {
 
-  private final FooRepository fooRepo;
+  private final ItemRepository fooRepo;
   private final PaymentRepository barRepo;
 
   @Autowired
-  FooBarController(FooRepository fooRepo, PaymentRepository barRepo) {
+  FooBarController(ItemRepository fooRepo, PaymentRepository barRepo) {
     this.fooRepo = fooRepo;
     this.barRepo = barRepo;
   }
