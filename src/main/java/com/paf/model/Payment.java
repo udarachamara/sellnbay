@@ -16,7 +16,7 @@ public class Payment {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "PAYMENTID")
+  @Column(name = "PAYMENT_ID")
   private int id;
 
   @Column(name = "ORDER_ID")
@@ -29,7 +29,7 @@ public class Payment {
   private int transactionId;
   
   @Column(name = "PAYMENT_STATUS")
-  private int paymentStatus;
+  private String paymentStatus;
   
   @Column(name = "PAYMENT_CREATE_AT")
   private Timestamp paymentCreateAt;
