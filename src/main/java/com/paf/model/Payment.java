@@ -36,7 +36,7 @@ public class Payment {
 
   
 
-  public Payment(int id, int orderId,int transactionId,String paymentMethod, int paymentStatus, Timestamp paymentCreateAt) {
+  public Payment(int id, int orderId,int transactionId,String paymentMethod, String paymentStatus, Timestamp paymentCreateAt) {
 	super();
 	this.id = id;
 	this.orderId = orderId;
