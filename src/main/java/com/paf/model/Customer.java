@@ -18,7 +18,7 @@ public class Customer {
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="customer_id_seq")
   @SequenceGenerator(name="customer_id_seq", sequenceName="customer_id_seq", allocationSize=1)
   @Column(name = "CUSTOMER_ID")
-  private Long id;
+  private int id;
 
   @Column(name = "CUSTOMER_FNAME")
   private String fname;
@@ -40,7 +40,7 @@ public class Customer {
 
 
 
-public Customer(Long id, String fname, String lname, String phone, String address, String customerStatus,
+public Customer(int id, String fname, String lname, String phone, String address, String customerStatus,
 		Timestamp customerCreateAt) {
 	super();
 	this.id = id;
@@ -58,12 +58,12 @@ Customer() {
   }
 
 
-public Long getId() {
+public int getId() {
 	return id;
 }
 
 
-public void setId(Long id) {
+public void setId(int id) {
 	this.id = id;
 }
 

@@ -18,7 +18,7 @@ public class Payment {
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="payment_id_seq")
   @SequenceGenerator(name="payment_id_seq", sequenceName="payment_id_seq", allocationSize=1)
   @Column(name = "PAYMENTID")
-  private Long id;
+  private int id;
 
   @Column(name = "ORDER_ID")
   private int orderId;
@@ -37,7 +37,7 @@ public class Payment {
 
   
 
-  public Payment(Long id, int orderId,int transactionId,String paymentMethod, int paymentStatus, Timestamp paymentCreateAt) {
+  public Payment(int id, int orderId,int transactionId,String paymentMethod, int paymentStatus, Timestamp paymentCreateAt) {
 	super();
 	this.id = id;
 	this.orderId = orderId;
@@ -53,12 +53,12 @@ Payment() {
   }
 
 
-public Long getId() {
+public int getId() {
 	return id;
 }
 
 
-public void setId(Long id) {
+public void setId(int id) {
 	this.id = id;
 }
 

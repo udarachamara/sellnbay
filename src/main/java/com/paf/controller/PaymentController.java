@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paf.model.Payment;
@@ -61,7 +60,6 @@ public class PaymentController {
 			return ResponseEntity.notFound().build();
 		}
 		
-		payment.setOrderId(paymentDetails.getOrderId());
 		payment.setTransactionId(paymentDetails.getTransactionId());
 		payment.setPaymentMethod(paymentDetails.getPaymentMethod());
 		payment.setPaymentStatus(paymentDetails.getPaymentStatus());

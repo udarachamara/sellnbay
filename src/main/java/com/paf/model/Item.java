@@ -19,7 +19,7 @@ public class Item {
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="item_id_seq")
   @SequenceGenerator(name="item_id_seq", sequenceName="item_id_seq", allocationSize=1)
   @Column(name = "ITEM_ID")
-  private Long id;
+  private int id;
 
   @Column(name = "ITEM_NAME")
   private String itemName;
@@ -39,7 +39,7 @@ public class Item {
   @Column(name = "ITEM_CREATE_AT")
   private Timestamp itemCreateAt;
   
-	public Item(Long id, String itemName, String itemCategory, double itemPrice, int itemQuantity, String itemStatus,
+	public Item(int id, String itemName, String itemCategory, double itemPrice, int itemQuantity, String itemStatus,
 			Timestamp itemCreateAt) {
 		super();
 		this.id = id;
@@ -57,12 +57,12 @@ public class Item {
 	  }
 
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
