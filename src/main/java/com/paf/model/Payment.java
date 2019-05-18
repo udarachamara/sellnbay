@@ -1,5 +1,7 @@
 package com.paf.model;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,11 +33,11 @@ public class Payment {
   private int paymentStatus;
   
   @Column(name = "PAYMENT_CREATE_AT")
-  private int paymentCreateAt;
+  private Timestamp paymentCreateAt;
 
   
 
-  public Payment(Long id, int orderId,int transactionId,String paymentMethod, int paymentStatus, int paymentCreateAt) {
+  public Payment(Long id, int orderId,int transactionId,String paymentMethod, int paymentStatus, Timestamp paymentCreateAt) {
 	super();
 	this.id = id;
 	this.orderId = orderId;
@@ -101,12 +103,12 @@ public void setPaymentStatus(int paymentStatus) {
 }
 
 
-public int getPaymentCreateAt() {
+public Timestamp getPaymentCreateAt() {
 	return paymentCreateAt;
 }
 
 
-public void setPaymentCreateAt(int paymentCreateAt) {
+public void setPaymentCreateAt(Timestamp paymentCreateAt) {
 	this.paymentCreateAt = paymentCreateAt;
 }
 

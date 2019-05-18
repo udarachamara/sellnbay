@@ -9,7 +9,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -19,28 +18,25 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "itemEntityManagerFactory",
-		transactionManagerRef = "itemTransactionManager",basePackages = {"com.paf.repository.item"})
-public class ItemConfig {
+		transactionManagerRef = "itemTransactionManager",basePackages = {"com.paf.repository.customer"})
+public class CustomerConfig {
+	 @Bean(name = "customerDataSource")
+	  @ConfigurationProperties(prefix = "dilshan.datasource")
+	  public DataSource dataSource() {
+	    return DataSourceBuilder.create().build();
+	  }
 
-  @Primary
-  @Bean(name = "itemDataSource")
-  @ConfigurationProperties(prefix = "safnaj.datasource")
-  public DataSource dataSource() {
-    return DataSourceBuilder.create().build();
-  }
+	  @Bean(name = "customerEntityManagerFactory")
+	  public LocalContainerEntityManagerFactoryBean customerEntityManagerFactory(
+	      EntityManagerFactoryBuilder builder, @Qualifier("customerDataSource") DataSource dataSource) {
+	    return builder.dataSource(dataSource).packages("com.paf.model").persistenceUnit("customers")
+	        .build();
+	  }
 
-  @Primary
-  @Bean(name = "itemEntityManagerFactory")
-  public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-      EntityManagerFactoryBuilder builder, @Qualifier("itemDataSource") DataSource dataSource) {
-    return builder.dataSource(dataSource).packages("com.paf.model").persistenceUnit("items")
-        .build();
-  }
+	  @Bean(name = "customerTransactionManager")
+	  public PlatformTransactionManager customerTransactionManager(
+	      @Qualifier("customerEntityManagerFactory") EntityManagerFactory customerEntityManagerFactory) {
+	    return new JpaTransactionManager(customerEntityManagerFactory);
+	  }
 
-  @Primary
-  @Bean(name = "itemTransactionManager")
-  public PlatformTransactionManager transactionManager(
-      @Qualifier("itemEntityManagerFactory") EntityManagerFactory itemEntityManagerFactory) {
-    return new JpaTransactionManager(itemEntityManagerFactory);
-  }
 }
