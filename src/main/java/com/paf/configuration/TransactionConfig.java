@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class TransactionConfig {
 
 	 @Bean(name = "transactionDataSource")
-	  @ConfigurationProperties(prefix = "udara.datasource")
+	  @ConfigurationProperties(prefix = "bank.datasource")
 	  public DataSource dataSource() {
 	    return DataSourceBuilder.create().build();
 	  }
