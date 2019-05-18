@@ -17,8 +17,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef = "itemEntityManagerFactory",
-		transactionManagerRef = "itemTransactionManager",basePackages = {"com.paf.repository.customer"})
+@EnableJpaRepositories(entityManagerFactoryRef = "customerEntityManagerFactory",
+		transactionManagerRef = "customerTransactionManager",basePackages = {"com.paf.repository.customer"})
 public class CustomerConfig {
 	 @Bean(name = "customerDataSource")
 	  @ConfigurationProperties(prefix = "dilshan.datasource")
