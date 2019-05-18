@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.paf.model.Payment;
+import com.paf.model.PaymentRequest;
+import com.paf.model.SuccessResponse;
+import com.google.gson.Gson;
 import com.paf.dao.PaymentDAO;
 @RestController
 public class PaymentController {
@@ -29,14 +33,40 @@ public class PaymentController {
 	/* to save an payment*/
 	@PostMapping("/payments")
 	public Payment createPayment(@Valid @RequestBody Payment payment) {
-		return paymentDAO.save(payment);
+		final String uri = "http://localhost:8080/accounts/makePayment";
+		
+		PaymentRequest paymentRequest = new PaymentRequest();
+		paymentRequest.setPublicKey("12345");
+		paymentRequest.setPrivateKey("123456789");
+		paymentRequest.setAmount(500);
+		paymentRequest.setCardNo("1234567887654321");
+		paymentRequest.setCvc(333);
+		paymentRequest.setCardExpiredAt("2021-05-10");
+
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<?> response = restTemplate.postForEntity( uri, paymentRequest, String.class );
+		
+		Gson gson = new Gson();
+		SuccessResponse responseData = gson.fromJson(response.getBody().toString(), SuccessResponse.class);
+		
+		if(responseData.getStatus() == true) {
+			return paymentDAO.save(payment);
+		}
+		
+		return payment;
+		
 	}
+	
+	
 	
 	/*get all payments*/
 	@GetMapping("/payments")
 	public List<Payment> getAllPayments(){
+
 		return paymentDAO.findAll();
 	}
+	
+	
 
 	/*get payment by paymentid*/
 	@GetMapping("/payments/{id}")

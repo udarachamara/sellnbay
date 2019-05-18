@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.paf.dao.AccountDAO;
 import com.paf.model.Account;
+import com.paf.model.PaymentRequest;
+import com.paf.model.SuccessResponse;
 
 @RestController
 public class AccountController {
@@ -38,6 +41,24 @@ public class AccountController {
 		@GetMapping("/accounts")
 		public List<Account> getAllAccounts(){
 			return accountDAO.findAll();
+		}
+		
+		/*check accounts*/
+		@PostMapping("/accounts/makePayment")
+		public SuccessResponse checkAccountsDetails(@Valid @RequestBody PaymentRequest paymentRequest){
+			
+			String cardNo = paymentRequest.getCardNo();
+			SuccessResponse successResponse = new SuccessResponse();
+			
+			List<Account> accounts= accountDAO.findAll();
+			for (final Account room : accounts) {
+		          System.out.println(room.getCardNo());
+			}
+			
+			successResponse.setCode(1000);
+			successResponse.setStatus(true);
+			successResponse.setResponseText(cardNo);
+			return successResponse;
 		}
 
 		/*get account by accountid*/
