@@ -67,8 +67,8 @@ public class CustomerController {
 			customer.setAddress(customerDetails.getAddress());
 			customer.setCustomerStatus(customerDetails.getCustomerStatus());
 			
-			Customer updateEmployee=customerDAO.save(customer);
-			return ResponseEntity.ok().body(updateEmployee);
+			Customer updateCustomer=customerDAO.save(customer);
+			return ResponseEntity.ok().body(updateCustomer);
 			
 			
 			

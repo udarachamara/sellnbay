@@ -67,8 +67,8 @@ public class ItemController {
 		item.setItemQuantity(itemDetails.getItemQuantity());
 		item.setItemCreateAt(itemDetails.getItemCreateAt());
 		
-		Item updateEmployee=itemDAO.save(item);
-		return ResponseEntity.ok().body(updateEmployee);
+		Item updateItem=itemDAO.save(item);
+		return ResponseEntity.ok().body(updateItem);
 		
 		
 		

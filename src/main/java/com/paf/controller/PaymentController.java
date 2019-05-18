@@ -65,8 +65,8 @@ public class PaymentController {
 		payment.setPaymentStatus(paymentDetails.getPaymentStatus());
 		payment.setPaymentCreateAt(paymentDetails.getPaymentCreateAt());
 		
-		Payment updateEmployee=paymentDAO.save(payment);
-		return ResponseEntity.ok().body(updateEmployee);
+		Payment updatePayment=paymentDAO.save(payment);
+		return ResponseEntity.ok().body(updatePayment);
 		
 		
 		
