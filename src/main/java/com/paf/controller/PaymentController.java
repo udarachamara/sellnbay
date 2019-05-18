@@ -1,5 +1,7 @@
 package com.paf.controller;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -32,30 +34,39 @@ public class PaymentController {
 
 	/* to save an payment*/
 	@PostMapping("/payments")
-	public Payment createPayment(@Valid @RequestBody Payment payment) {
-		final String uri = "http://localhost:8080/accounts/makePayment";
+	public Payment createPayment(@Valid @RequestBody PaymentRequest paymentRequest) {
 		
-		PaymentRequest paymentRequest = new PaymentRequest();
-		paymentRequest.setPublicKey("12345");
-		paymentRequest.setPrivateKey("123456789");
-		paymentRequest.setAmount(500);
-		paymentRequest.setCardNo("1234567887654321");
-		paymentRequest.setCvc(333);
-		paymentRequest.setCardExpiredAt("2021-05-10");
-
+//		int orderId = paymentRequest.getOrderId();
+//		double orderTotalAmount = paymentRequest.getAmount();
+//		String cardNO = paymentRequest.getCardNo();
+//		int cvc = paymentRequest.getCvc();
+//		String cardExpiredAt = paymentRequest.getCardExpiredAt();
+		
+		final String uri = "http://localhost:8080/accounts/makePayment";
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<?> response = restTemplate.postForEntity( uri, paymentRequest, String.class );
-		
 		Gson gson = new Gson();
 		SuccessResponse responseData = gson.fromJson(response.getBody().toString(), SuccessResponse.class);
+		Payment payment = new Payment();
 		
 		if(responseData.getStatus() == true) {
+			payment.setOrderId(paymentRequest.getOrderId());
+			payment.setPaymentMethod("visa");
+			int transactionId = Integer.parseInt(responseData.getResponseText());
+			payment.setTransactionId(transactionId);
+			payment.setPaymentStatus("complete");
+			Date today = new Date();
+			Timestamp t2 = getTimestamp(today);
+			payment.setPaymentCreateAt(t2);
 			return paymentDAO.save(payment);
 		}
 		
 		return payment;
 		
 	}
+	
+	public static Timestamp getTimestamp(Date date) { return date == null ? null : new java.sql.Timestamp(date.getTime()); }
+
 	
 	
 	

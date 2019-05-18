@@ -47,7 +47,7 @@ public class Payment {
 }
 
 
-Payment() {
+public Payment() {
     // Default constructor needed by JPA
   }
 

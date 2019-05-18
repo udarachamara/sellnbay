@@ -1,5 +1,7 @@
 package com.paf.controller;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -16,19 +18,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paf.dao.AccountDAO;
+import com.paf.dao.TransactionDAO;
 import com.paf.model.Account;
 import com.paf.model.PaymentRequest;
 import com.paf.model.SuccessResponse;
+import com.paf.model.Transaction;
 
 @RestController
 public class AccountController {
 
 
 	  private final AccountDAO accountDAO;
+	  private final TransactionDAO transactionDAO;
 
 	  @Autowired
-	  AccountController(AccountDAO accountDAO) {
+	  AccountController(AccountDAO accountDAO , TransactionDAO transactionDAO) {
 	    this.accountDAO = accountDAO;
+	    this.transactionDAO = transactionDAO;
 	  }
 	  
 		/* to save an account*/
@@ -48,18 +54,58 @@ public class AccountController {
 		public SuccessResponse checkAccountsDetails(@Valid @RequestBody PaymentRequest paymentRequest){
 			
 			String cardNo = paymentRequest.getCardNo();
+			int cvc = paymentRequest.getCvc();
+			String publicKey = paymentRequest.getPublicKey();
+			String privateKey = paymentRequest.getPrivateKey();
+			double amount = paymentRequest.getAmount();
+			String cardExpiredAt = paymentRequest.getCardExpiredAt();
+			
+			
 			SuccessResponse successResponse = new SuccessResponse();
 			
 			List<Account> accounts= accountDAO.findAll();
-			for (final Account room : accounts) {
-		          System.out.println(room.getCardNo());
+			for (final Account account : accounts) {
+		          if(account.getCardNo().equalsIgnoreCase(cardNo) && account.getCvc() == cvc) {
+		        	  Long accountId = account.getId();
+		        	  
+		        	  if(account.getAccountBalance() > amount) {
+		        		  	Transaction transaction = new Transaction();
+		        		  	Date today = new Date();
+		        			Timestamp t2 = getTimestamp(today);
+		        			transaction.setAccountId(accountId);
+		        			transaction.setAmount(amount);
+		        		  	transaction.setTransactionType("credit");
+		        		  	transaction.setTransactionStatus("pending");
+		        			transaction.setCreateAt(t2);
+		        			
+		        			Account _account = accountDAO.findOne(accountId);
+		        			double tmpAmount = account.getAccountBalance();
+		        			
+		        			double newBalance = tmpAmount - amount;
+		        			
+		        			_account.setAccountBalance(newBalance);
+		        			
+		        			accountDAO.save(_account);
+		        		  	
+		        		  	Transaction _transaction = transactionDAO.save(transaction);
+			        		successResponse.setCode(1000);
+					  		successResponse.setStatus(true);
+					  		successResponse.setResponseText(transaction.getId().toString());
+					  		return successResponse;
+		        	  }
+		        	  
+		    
+		          }
 			}
 			
-			successResponse.setCode(1000);
-			successResponse.setStatus(true);
-			successResponse.setResponseText(cardNo);
+			successResponse.setCode(1001);
+			successResponse.setStatus(false);
+			successResponse.setResponseText("Invalid Account Details..!");
 			return successResponse;
 		}
+		
+
+		public static Timestamp getTimestamp(Date date) { return date == null ? null : new java.sql.Timestamp(date.getTime()); }
 
 		/*get account by accountid*/
 		@GetMapping("/accounts/{id}")
@@ -92,7 +138,6 @@ public class AccountController {
 			
 			Account updateAccount=accountDAO.save(account);
 			return ResponseEntity.ok().body(updateAccount);
-			
 			
 			
 		}

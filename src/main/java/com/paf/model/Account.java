@@ -31,7 +31,7 @@ public class Account {
 	  private String cardNo;
 	  
 	  @Column(name = "CVC")
-	  private String cvc;
+	  private int cvc;
 	  
 	  @Column(name = "CARD_EXPIRED_AT")
 	  private Timestamp cardExpiredAt;
@@ -41,7 +41,7 @@ public class Account {
 	  
 	  
 	  
-	  public Account(Long id, String fname, String lname, double accountBalance, String cardNo, String cvc,
+	  public Account(Long id, String fname, String lname, double accountBalance, String cardNo, int cvc,
 			Timestamp cardExpiredAt, String accountStatus) {
 		super();
 		this.id = id;
@@ -98,11 +98,11 @@ public class Account {
 		this.cardNo = cardNo;
 	}
 
-	public String getCvc() {
+	public int getCvc() {
 		return cvc;
 	}
 
-	public void setCvc(String cvc) {
+	public void setCvc(int cvc) {
 		this.cvc = cvc;
 	}
 
