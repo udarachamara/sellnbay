@@ -92,12 +92,12 @@ public void setPaymentMethod(String paymentMethod) {
 }
 
 
-public int getPaymentStatus() {
+public String getPaymentStatus() {
 	return paymentStatus;
 }
 
 
-public void setPaymentStatus(int paymentStatus) {
+public void setPaymentStatus(String paymentStatus) {
 	this.paymentStatus = paymentStatus;
 }
 
