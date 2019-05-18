@@ -1,5 +1,6 @@
 package com.paf.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -29,7 +30,6 @@ public class CustomerController {
 		/* to save an customer*/
 		@PostMapping("/customers")
 		public Customer createCustomer(@Valid @RequestBody Customer customer) {
-			customer.setId(1);
 			return customerDAO.save(customer);
 		}
 		

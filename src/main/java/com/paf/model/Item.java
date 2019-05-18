@@ -16,8 +16,7 @@ import javax.persistence.Table;
 public class Item {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="item_id_seq")
-  @SequenceGenerator(name="item_id_seq", sequenceName="item_id_seq", allocationSize=1)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "ITEM_ID")
   private int id;
 

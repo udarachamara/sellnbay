@@ -15,8 +15,7 @@ import javax.persistence.Table;
 public class Payment {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="payment_id_seq")
-  @SequenceGenerator(name="payment_id_seq", sequenceName="payment_id_seq", allocationSize=1)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "PAYMENTID")
   private int id;
 

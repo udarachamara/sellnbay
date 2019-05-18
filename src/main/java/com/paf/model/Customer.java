@@ -15,10 +15,9 @@ import javax.persistence.Table;
 public class Customer {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="customer_id_seq")
-  @SequenceGenerator(name="customer_id_seq", sequenceName="customer_id_seq", allocationSize=1)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "CUSTOMER_ID")
-  private int id;
+  private Long id;
 
   @Column(name = "CUSTOMER_FNAME")
   private String fname;
@@ -26,11 +25,20 @@ public class Customer {
   @Column(name = "CUSTOMER_LNAME")
   private String lname;
   
+  @Column(name = "CUSTOMER_ADDRESS")
+  private String address;
+  
   @Column(name = "CUSTOMER_PHONE")
   private String phone;
   
-  @Column(name = "CUSTOMER_ADDRESS")
-  private String address;
+  @Column(name = "EMAIL")
+  private String email;
+  
+  @Column(name = "USER_NAME")
+  private String userName;
+  
+  @Column(name = "_PASSWORD")
+  private String password;
   
   @Column(name = "CUSTOMER_STATUS")
   private String customerStatus;
@@ -40,14 +48,17 @@ public class Customer {
 
 
 
-public Customer(int id, String fname, String lname, String phone, String address, String customerStatus,
-		Timestamp customerCreateAt) {
+public Customer(Long id, String fname, String lname, String address, String phone, String email, String userName,
+		String password, String customerStatus, Timestamp customerCreateAt) {
 	super();
 	this.id = id;
 	this.fname = fname;
 	this.lname = lname;
-	this.phone = phone;
 	this.address = address;
+	this.phone = phone;
+	this.email = email;
+	this.userName = userName;
+	this.password = password;
 	this.customerStatus = customerStatus;
 	this.customerCreateAt = customerCreateAt;
 }
@@ -58,12 +69,12 @@ Customer() {
   }
 
 
-public int getId() {
+public Long getId() {
 	return id;
 }
 
 
-public void setId(int id) {
+public void setId(Long id) {
 	this.id = id;
 }
 
@@ -88,6 +99,16 @@ public void setLname(String lname) {
 }
 
 
+public String getAddress() {
+	return address;
+}
+
+
+public void setAddress(String address) {
+	this.address = address;
+}
+
+
 public String getPhone() {
 	return phone;
 }
@@ -98,13 +119,33 @@ public void setPhone(String phone) {
 }
 
 
-public String getAddress() {
-	return address;
+public String getEmail() {
+	return email;
 }
 
 
-public void setAddress(String address) {
-	this.address = address;
+public void setEmail(String email) {
+	this.email = email;
+}
+
+
+public String getUserName() {
+	return userName;
+}
+
+
+public void setUserName(String userName) {
+	this.userName = userName;
+}
+
+
+public String getPassword() {
+	return password;
+}
+
+
+public void setPassword(String password) {
+	this.password = password;
 }
 
 
@@ -126,6 +167,7 @@ public Timestamp getCustomerCreateAt() {
 public void setCustomerCreateAt(Timestamp customerCreateAt) {
 	this.customerCreateAt = customerCreateAt;
 }
+
 
 
 }
