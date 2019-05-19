@@ -26,7 +26,7 @@ public class Payment {
   private String paymentMethod;
   
   @Column(name = "TRANSACTION_ID")
-  private int transactionId;
+  private Long transactionId;
   
   @Column(name = "PAYMENT_STATUS")
   private String paymentStatus;
@@ -36,7 +36,7 @@ public class Payment {
 
   
 
-  public Payment(Long id, int orderId,int transactionId,String paymentMethod, String paymentStatus, Timestamp paymentCreateAt) {
+  public Payment(Long id, int orderId,Long transactionId,String paymentMethod, String paymentStatus, Timestamp paymentCreateAt) {
 	super();
 	this.id = id;
 	this.orderId = orderId;
@@ -72,12 +72,12 @@ public void setOrderId(int orderId) {
 }
 
 
-public int getTransactionId() {
+public Long getTransactionId() {
 	return transactionId;
 }
 
 
-public void setTransactionId(int transactionId) {
+public void setTransactionId(Long transactionId) {
 	this.transactionId = transactionId;
 }
 

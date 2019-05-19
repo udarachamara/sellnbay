@@ -23,6 +23,7 @@ import com.paf.model.Account;
 import com.paf.model.PaymentRequest;
 import com.paf.model.SuccessResponse;
 import com.paf.model.Transaction;
+import com.paf.model.UpdatePaymentTransaction;
 
 @RestController
 public class AccountController {
@@ -102,6 +103,37 @@ public class AccountController {
 			successResponse.setStatus(false);
 			successResponse.setResponseText("Invalid Account Details..!");
 			return successResponse;
+		}
+		
+		@PostMapping("/accounts/updatePayment")
+		public SuccessResponse updateAccountsPayment(@Valid @RequestBody UpdatePaymentTransaction updatePaymentTransaction){
+			
+			SuccessResponse successResponse = new SuccessResponse();
+			
+			Transaction transaction = transactionDAO.findOne(updatePaymentTransaction.getTransactionId());
+			Account account = accountDAO.findOne(transaction.getAccountId());
+			
+			if(updatePaymentTransaction.getTransactionType().equalsIgnoreCase("debit")) {
+				transaction.setTransactionStatus("reject");
+				transactionDAO.save(transaction);
+				
+    			double tmpAmount = account.getAccountBalance();
+    			double newBalance = tmpAmount + transaction.getAmount();
+    			account.setAccountBalance(newBalance);
+    			
+    			accountDAO.save(account);
+				System.out.print("fhvjh hjvjhvjh");
+				successResponse.setCode(1000);
+				successResponse.setStatus(true);
+				successResponse.setResponseText("Success..!");
+				return successResponse;
+			}
+			
+			successResponse.setCode(1001);
+			successResponse.setStatus(false);
+			successResponse.setResponseText("Invalid Account Details..!");
+			return successResponse;
+			
 		}
 		
 
