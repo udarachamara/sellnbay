@@ -1,4 +1,4 @@
-package com.paf.repository.transaction;
+package com.paf.repository.account;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

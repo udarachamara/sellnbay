@@ -1,26 +1,49 @@
+<<<<<<< HEAD
+=======
+com\paf\controller\DeliveryController.class
+>>>>>>> 12a520ef9c7496aff1e07bf4f8b53db1bd303d63
 com\paf\configuration\AccountConfig.class
 com\paf\controller\CustomerController.class
 com\paf\model\Transaction.class
 com\paf\repository\account\AccountRepository.class
+<<<<<<< HEAD
 com\paf\repository\transaction\TransactionRepository.class
+=======
+>>>>>>> 12a520ef9c7496aff1e07bf4f8b53db1bd303d63
 com\paf\model\Item.class
 com\paf\configuration\PaymentConfig.class
 META-INF\spring-configuration-metadata.json
 com\paf\dao\ItemDAO.class
+<<<<<<< HEAD
 com\paf\repository\item\ItemRepository.class
 com\paf\controller\ItemController.class
 com\paf\model\SuccessResponse.class
+=======
+com\paf\repository\delivery\VehicleRepository.class
+com\paf\controller\ItemController.class
+com\paf\model\Seller.class
+com\paf\model\SuccessResponse.class
+com\paf\controller\Vehiclecontroller.class
+com\paf\dao\VehicleDAO.class
+>>>>>>> 12a520ef9c7496aff1e07bf4f8b53db1bd303d63
 com\paf\model\UpdatePaymentTransaction.class
 com\paf\dao\AccountDAO.class
 com\paf\repository\customer\CustomerRepository.class
 com\paf\dao\TransactionDAO.class
 com\paf\model\Customer.class
 com\paf\configuration\CustomerConfig.class
+<<<<<<< HEAD
 com\paf\model\Order.class
+=======
+com\paf\controller\SellerController.class
+com\paf\model\Order.class
+com\paf\dao\DeliveryDAO.class
+>>>>>>> 12a520ef9c7496aff1e07bf4f8b53db1bd303d63
 com\paf\model\Payment.class
 com\paf\Application.class
 com\paf\model\Account.class
 com\paf\repository\payment\PaymentRepository.class
+<<<<<<< HEAD
 com\paf\controller\TransactionController.class
 com\paf\controller\PaymentController.class
 com\paf\model\PaymentRequest.class
@@ -30,4 +53,24 @@ com\paf\controller\OrderController.class
 com\paf\repository\order\OrderRepository.class
 com\paf\dao\OrderDAO.class
 com\paf\controller\AccountController.class
+=======
+com\paf\configuration\OrderConfig.class
+com\paf\model\Delivery.class
+com\paf\controller\TransactionController.class
+com\paf\repository\delivery\DeliveryRepository.class
+com\paf\controller\PaymentController.class
+com\paf\repository\account\TransactionRepository.class
+com\paf\model\PaymentRequest.class
+com\paf\dao\PaymentDAO.class
+com\paf\controller\OrderController.class
+com\paf\repository\seller\SellerRepository.class
+com\paf\configuration\DeliveryConfig.class
+com\paf\configuration\SellerConfig.class
+com\paf\repository\seller\ItemRepository.class
+com\paf\repository\order\OrderRepository.class
+com\paf\model\Vehicle.class
+com\paf\dao\OrderDAO.class
+com\paf\controller\AccountController.class
+com\paf\dao\SellerDAO.class
+>>>>>>> 12a520ef9c7496aff1e07bf4f8b53db1bd303d63
 com\paf\dao\CustomerDAO.class

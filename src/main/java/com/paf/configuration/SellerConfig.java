@@ -17,27 +17,26 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef = "orderEntityManagerFactory",
-transactionManagerRef = "orderTransactionManager",basePackages = {"com.paf.repository.order"})
+@EnableJpaRepositories(entityManagerFactoryRef = "sellerEntityManagerFactory",
+		transactionManagerRef = "sellerTransactionManager",basePackages = {"com.paf.repository.seller"})
 
-public class OrderConfig {
-	
-	 @Bean(name = "orderDataSource")
-	  @ConfigurationProperties(prefix = "safnaj.datasource")
+public class SellerConfig {
+	 @Bean(name = "sellerDataSource")
+	  @ConfigurationProperties(prefix = "dilshan.datasource")
 	  public DataSource dataSource() {
 	    return DataSourceBuilder.create().build();
 	  }
-	 
-	 @Bean(name = "orderEntityManagerFactory")
-	  public LocalContainerEntityManagerFactoryBean orderEntityManagerFactory(
-	      EntityManagerFactoryBuilder builder, @Qualifier("orderDataSource") DataSource dataSource) {
-	    return builder.dataSource(dataSource).packages("com.paf.model").persistenceUnit("orders")
+
+	  @Bean(name = "sellerEntityManagerFactory")
+	  public LocalContainerEntityManagerFactoryBean sellerEntityManagerFactory(
+	      EntityManagerFactoryBuilder builder, @Qualifier("sellerDataSource") DataSource dataSource) {
+	    return builder.dataSource(dataSource).packages("com.paf.model").persistenceUnit("sellers")
 	        .build();
 	  }
-	 
-	 @Bean(name = "orderTransactionManager")
-	  public PlatformTransactionManager paymentTransactionManager(
-	      @Qualifier("orderEntityManagerFactory") EntityManagerFactory orderEntityManagerFactory) {
-	    return new JpaTransactionManager(orderEntityManagerFactory);
+
+	  @Bean(name = "sellerTransactionManager")
+	  public PlatformTransactionManager sellerTransactionManager(
+	      @Qualifier("sellerEntityManagerFactory") EntityManagerFactory sellerEntityManagerFactory) {
+	    return new JpaTransactionManager(sellerEntityManagerFactory);
 	  }
 }

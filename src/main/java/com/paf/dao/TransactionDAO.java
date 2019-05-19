@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.paf.model.Transaction;
-import com.paf.repository.transaction.TransactionRepository;
+import com.paf.repository.account.TransactionRepository;
 
 @Service
 public class TransactionDAO {
