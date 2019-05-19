@@ -8,6 +8,8 @@ public class PaymentRequest {
 	
 	private String privateKey;
 	
+	private int orderId;
+	
 	private double amount;
 	
 	private String cardNo;
@@ -16,11 +18,12 @@ public class PaymentRequest {
 	
 	private String cardExpiredAt;
 
-	public PaymentRequest(String publicKey, String privateKey, double amount, String cardNo, int cvc,
+	public PaymentRequest(String publicKey, String privateKey, int orderId ,double amount, String cardNo, int cvc,
 			String cardExpiredAt) {
 		super();
 		this.publicKey = publicKey;
 		this.privateKey = privateKey;
+		this.orderId = orderId;
 		this.amount = amount;
 		this.cardNo = cardNo;
 		this.cvc = cvc;
@@ -45,6 +48,15 @@ public class PaymentRequest {
 
 	public void setPrivateKey(String privateKey) {
 		this.privateKey = privateKey;
+	}
+	
+
+	public int getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
 	}
 
 	public double getAmount() {

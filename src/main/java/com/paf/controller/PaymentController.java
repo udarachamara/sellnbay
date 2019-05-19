@@ -1,5 +1,7 @@
 package com.paf.controller;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -18,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 import com.paf.model.Payment;
 import com.paf.model.PaymentRequest;
 import com.paf.model.SuccessResponse;
+import com.paf.model.UpdatePaymentTransaction;
 import com.google.gson.Gson;
 import com.paf.dao.PaymentDAO;
 @RestController
@@ -32,30 +35,39 @@ public class PaymentController {
 
 	/* to save an payment*/
 	@PostMapping("/payments")
-	public Payment createPayment(@Valid @RequestBody Payment payment) {
-		final String uri = "http://localhost:8080/accounts/makePayment";
+	public Payment createPayment(@Valid @RequestBody PaymentRequest paymentRequest) {
 		
-		PaymentRequest paymentRequest = new PaymentRequest();
-		paymentRequest.setPublicKey("12345");
-		paymentRequest.setPrivateKey("123456789");
-		paymentRequest.setAmount(500);
-		paymentRequest.setCardNo("1234567887654321");
-		paymentRequest.setCvc(333);
-		paymentRequest.setCardExpiredAt("2021-05-10");
-
+//		int orderId = paymentRequest.getOrderId();
+//		double orderTotalAmount = paymentRequest.getAmount();
+//		String cardNO = paymentRequest.getCardNo();
+//		int cvc = paymentRequest.getCvc();
+//		String cardExpiredAt = paymentRequest.getCardExpiredAt();
+		
+		final String uri = "http://localhost:8080/accounts/makePayment";
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<?> response = restTemplate.postForEntity( uri, paymentRequest, String.class );
-		
 		Gson gson = new Gson();
 		SuccessResponse responseData = gson.fromJson(response.getBody().toString(), SuccessResponse.class);
+		Payment payment = new Payment();
 		
 		if(responseData.getStatus() == true) {
+			payment.setOrderId(paymentRequest.getOrderId());
+			payment.setPaymentMethod("visa");
+			long transactionId = Long.parseLong(responseData.getResponseText());
+			payment.setTransactionId(transactionId);
+			payment.setPaymentStatus("complete");
+			Date today = new Date();
+			Timestamp t2 = getTimestamp(today);
+			payment.setPaymentCreateAt(t2);
 			return paymentDAO.save(payment);
 		}
 		
 		return payment;
 		
 	}
+	
+	public static Timestamp getTimestamp(Date date) { return date == null ? null : new java.sql.Timestamp(date.getTime()); }
+
 	
 	
 	
@@ -94,7 +106,6 @@ public class PaymentController {
 		payment.setPaymentMethod(paymentDetails.getPaymentMethod());
 		payment.setPaymentStatus(paymentDetails.getPaymentStatus());
 		payment.setPaymentCreateAt(paymentDetails.getPaymentCreateAt());
-		
 		Payment updatePayment=paymentDAO.save(payment);
 		return ResponseEntity.ok().body(updatePayment);
 		
@@ -110,11 +121,33 @@ public class PaymentController {
 		if(payment==null) {
 			return ResponseEntity.notFound().build();
 		}
-		paymentDAO.delete(payment);
+		boolean status = this.cancelPayment(paymentid);
+		if(status)
+			paymentDAO.delete(payment);
 		
 		return ResponseEntity.ok().build();
 		
 		
+	}
+	
+	public boolean cancelPayment(Long paymentId) {
+		
+		Payment payment= paymentDAO.findOne(paymentId);
+		UpdatePaymentTransaction updatePaymentTransaction = new UpdatePaymentTransaction();
+		
+		updatePaymentTransaction.setTransactionId(payment.getTransactionId());
+		updatePaymentTransaction.setTransactionType("debit");
+		
+		final String uri = "http://localhost:8080/accounts/updatePayment";
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<?> response = restTemplate.postForEntity( uri, updatePaymentTransaction, String.class );
+		Gson gson = new Gson();
+		SuccessResponse responseData = gson.fromJson(response.getBody().toString(), SuccessResponse.class);
+		
+		if(responseData.getStatus()) 
+			return true;
+		
+		return false;
 	}
 
 }
