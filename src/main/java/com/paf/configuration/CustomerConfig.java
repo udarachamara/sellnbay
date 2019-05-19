@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 		transactionManagerRef = "customerTransactionManager",basePackages = {"com.paf.repository.customer"})
 public class CustomerConfig {
 	 @Bean(name = "customerDataSource")
-	  @ConfigurationProperties(prefix = "dilshan.datasource")
+	  @ConfigurationProperties(prefix = "shaneli.datasource")
 	  public DataSource dataSource() {
 	    return DataSourceBuilder.create().build();
 	  }

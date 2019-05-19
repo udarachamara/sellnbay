@@ -1,5 +1,4 @@
 package com.paf.controller;
-mport java.util.List;
 
 import java.util.List;
 
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paf.model.Delivery;
-import com.paf.model.Item;
 import com.paf.dao.DeliveryDAO;
 
 
@@ -30,20 +28,20 @@ public class DeliveryController {
 	  }
 		/* to save an item*/
 		@PostMapping("/delivery")
-		public Delivery createItem(@Valid @RequestBody Delivery delivery) {
-			return DeliveryDAO.save(delivery);
+		public Delivery createDelivery(@Valid @RequestBody Delivery delivery) {
+			return deliveryDAO.save(delivery);
 		}
 		
 		/*get all items*/
 		@GetMapping("/delivery")
-		public List<Delivery> getAllItems(){
+		public List<Delivery> getAllDeliverys(){
 			return deliveryDAO.findAll();
 		}
 		/*get item by deliverid*/
 		@GetMapping("/delivery/{id}")
 		public ResponseEntity<Delivery> getDeliverId(@PathVariable(value="id") Long deliveryId){
 			
-			Delivery delivery= deliveryDAO.findOne(DeliverId);
+			Delivery delivery= deliveryDAO.findOne(deliveryId);
 			
 			if(delivery==null) {
 				return ResponseEntity.notFound().build();
@@ -51,22 +49,22 @@ public class DeliveryController {
 			return ResponseEntity.ok().body(delivery);
 			
 		}
-		/*update an Item by Itemid*/
+		/*update an Delivery by Deliveryid*/
 		@PutMapping("/delivery/{id}")
-		public ResponseEntity<Delivery> updateItem(@PathVariable(value="id") Long DeliverId,@Valid @RequestBody Delivery delivery){
+		public ResponseEntity<Delivery> updateDelivery(@PathVariable(value="id") Long DeliverId,@Valid @RequestBody Delivery deliveryDetails){
 			
-			Delivery delivery=deliveryDAO.findOne(DeliverId);
+			Delivery delivery = deliveryDAO.findOne(DeliverId);
 			if(delivery==null) {
 				return ResponseEntity.notFound().build();
 			}
 			
-			delivery.setDeliverId(delivery.getDeliverId() );
-			delivery.setDeliverName(delivery.getDeliverName());
-            delivery.setMobile(delivery.getMobile());
-        	delivery.setOrderId(delivery.getOrderId());
-        	delivery.setDeliveryAddress(delivery. getDeliveryAddress());
-        	delivery.setDeliveryDate(delivery.getDeliveryDate());
-        	delivery.setDeliveryStatus(delivery.DeliveryStatus());
+			delivery.setDeliverId(deliveryDetails.getDeliverId() );
+			delivery.setDeliverName(deliveryDetails.getDeliverName());
+            delivery.setMobile(deliveryDetails.getMobile());
+        	delivery.setOrderId(deliveryDetails.getOrderId());
+        	delivery.setDeliveryAddress(deliveryDetails. getDeliveryAddress());
+        	delivery.setDeliveryDate(deliveryDetails.getDeliveryDate());
+        	delivery.setDeliveryStatus(deliveryDetails.DeliveryStatus());
         	
         	
 			
@@ -80,7 +78,7 @@ public class DeliveryController {
 		@DeleteMapping("/delivery/{id}")
 		public ResponseEntity<Delivery> deleteDelivery(@PathVariable(value="id") Long DeliverId){
 			
-			Delivery delivery = deliveryDAO.findOne(long);
+			Delivery delivery = deliveryDAO.findOne(DeliverId);
 			if(delivery==null) {
 				return ResponseEntity.notFound().build();
 			}

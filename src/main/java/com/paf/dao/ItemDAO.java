@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.paf.model.Item;
-import com.paf.repository.item.ItemRepository;
+import com.paf.repository.seller.ItemRepository;
 
 @Service
 public class ItemDAO {

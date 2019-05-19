@@ -9,6 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -21,12 +22,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
     transactionManagerRef = "paymentTransactionManager", basePackages = {"com.paf.repository.payment"})
 public class PaymentConfig {
 
+  @Primary
   @Bean(name = "paymentDataSource")
   @ConfigurationProperties(prefix = "udara.datasource")
   public DataSource dataSource() {
     return DataSourceBuilder.create().build();
   }
 
+  @Primary
   @Bean(name = "paymentEntityManagerFactory")
   public LocalContainerEntityManagerFactoryBean paymentEntityManagerFactory(
       EntityManagerFactoryBuilder builder, @Qualifier("paymentDataSource") DataSource dataSource) {
@@ -34,6 +37,7 @@ public class PaymentConfig {
         .build();
   }
 
+  @Primary
   @Bean(name = "paymentTransactionManager")
   public PlatformTransactionManager paymentTransactionManager(
       @Qualifier("paymentEntityManagerFactory") EntityManagerFactory paymentEntityManagerFactory) {

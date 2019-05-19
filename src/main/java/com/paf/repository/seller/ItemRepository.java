@@ -1,4 +1,4 @@
-package com.paf.repository.item;
+package com.paf.repository.seller;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

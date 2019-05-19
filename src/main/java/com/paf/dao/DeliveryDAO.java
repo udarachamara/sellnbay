@@ -16,28 +16,28 @@ public class DeliveryDAO {
 	
 	/*to save an delivery*/
 	
-	public Delivery save(String delivery) {
-		return DeliveryRepository.save(delivery);
+	public Delivery save(Delivery delivery) {
+		return deliveryRepository.save(delivery);
 	}
 	
 	
 	/* search all delivery*/
 	
 	public List<Delivery> findAll(){
-		return DeliveryRepository.findAll();
+		return deliveryRepository.findAll();
 	}
 	
 	
 	/*get an delivery by id*/
-	public Delivery findOne(String DeliverId) {
-		return DeliveryRepository.findOne(String DeliverId);
+	public Delivery findOne(Long DeliverId) {
+		return deliveryRepository.findOne(DeliverId);
 	}
 	
 	
 	/*delete an delivery*/
 	
 	public void delete(Delivery delivery) {
-		DeliveryRepository.delete(delivery);
+		deliveryRepository.delete(delivery);
 	}
 
 }

@@ -18,8 +18,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "customerEntityManagerFactory",
-		transactionManagerRef = "customerTransactionManager",basePackages = {"com.paf.repository.customer"})
-public class deliveryConfig {
+		transactionManagerRef = "customerTransactionManager",basePackages = {"com.paf.repository.delivery"})
+public class DeliveryConfig {
 	@Bean(name = "deliveryDataSource")
 	  @ConfigurationProperties(prefix = "shasikala.datasource")
 	  public DataSource dataSource() {

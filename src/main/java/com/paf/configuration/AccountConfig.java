@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "accountEntityManagerFactory",
-		transactionManagerRef = "accountTransactionManager",basePackages = {"com.paf.repository.account","com.paf.repository.transaction"})
+		transactionManagerRef = "accountTransactionManager",basePackages = {"com.paf.repository.account"})
 public class AccountConfig {
 
 	 @Bean(name = "accountDataSource")

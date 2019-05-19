@@ -12,10 +12,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "vehicle")
-public class vehicle {
-	 @Id
-	  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="vehicle_id_seq")
-	  @SequenceGenerator(name="vehicle_id_seq", sequenceName="veicle_id_seq", allocationSize=1)
+public class Vehicle {
+	  @Id
+	  @GeneratedValue(strategy = GenerationType.IDENTITY)
 	  @Column(name = "Vehicle_ID")
 	  private String VehicleId;
 
@@ -28,7 +27,7 @@ public class vehicle {
 	 
 
 
-	public vehicle(String VehicleId, String VehicleNumber, String VehicleType)
+	public Vehicle(String VehicleId, String VehicleNumber, String VehicleType)
 			 {
 		super();
 		this.VehicleId = VehicleId;
@@ -38,7 +37,7 @@ public class vehicle {
 	}
 
 
-	vehicle() {
+	Vehicle() {
 	    // Default constructor needed by JPA
 	  }
 

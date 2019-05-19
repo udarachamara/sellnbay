@@ -13,11 +13,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "delivery")
 public class Delivery {
-	 @Id
-	  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="delivery_id_seq")
-	  @SequenceGenerator(name="delivery_id_seq", sequenceName="delivery_id_seq", allocationSize=1)
+	  @Id
+	  @GeneratedValue(strategy = GenerationType.IDENTITY)
 	  @Column(name = "Deliver_ID")
-	  private String DeliverId;
+	  private Long DeliverId;
 
 	  @Column(name = "Deliver_Name")
 	  private String DeliverName;
@@ -41,7 +40,7 @@ public class Delivery {
 	
 
 
-	public Delivery(String DeliverId, String DeliverName, String Mobile,String DeliveryStatus,String DeliveryDate,String OrderId,String DeliveryAddress) {
+	public Delivery(Long DeliverId, String DeliverName, String Mobile,String DeliveryStatus,String DeliveryDate,String OrderId,String DeliveryAddress) {
 		super();
 		this.DeliverId =DeliverId;
 		this.DeliverName = DeliverName;
@@ -56,11 +55,11 @@ public class Delivery {
 	Delivery() {
 	    // Default constructor needed by JPA
 	  }
-	public String getDeliverId() {
+	public Long getDeliverId() {
 		return DeliverId ;
 	}
 
-	public void setDeliverId(String DeliverId) {
+	public void setDeliverId(Long DeliverId) {
 		this.DeliverId = DeliverId;
 		
 	}
