@@ -1,129 +1,129 @@
 package com.paf.model;
 
-import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "delivery")
+@Table(name = "deliveries")
 public class Delivery {
 	  @Id
 	  @GeneratedValue(strategy = GenerationType.IDENTITY)
-	  @Column(name = "Deliver_ID")
-	  private Long DeliverId;
+	  @Column(name = "DELIVER_ID")
+	  private Long deliverId;
 
-	  @Column(name = "Deliver_Name")
-	  private String DeliverName;
+	  @Column(name = "DELIVER_NAME")
+	  private String deliverName;
 	  
-	  @Column(name = "Mobile")
-	  private String Mobile;
+	  @Column(name = "MOBILE")
+	  private String mobile;
 	  
-	  @Column(name = "Order_ID")
-	  private String OrderId;
+	  @Column(name = "ORDER_ID")
+	  private long orderId;
 
-	  @Column(name = "Delivery_date")
-	  private String DeliveryDate;
+	  @Column(name = "DELIVER_DATE")
+	  private String deliveryDate;
 	  
-	  @Column(name = "Delivery_status")
-	  private String DeliveryStatus;
+	  @Column(name = "DELIVERY_STATUS")
+	  private String deliveryStatus;
 	  
-	  @Column(name = "Delivery_Address")
-	  private String DeliveryAddress;
+	  @Column(name = "DELIVERY_ADDRESS")
+	  private String deliveryAddress;
 	  
 	  
-	
 
 
-	public Delivery(Long DeliverId, String DeliverName, String Mobile,String DeliveryStatus,String DeliveryDate,String OrderId,String DeliveryAddress) {
+	public Delivery(Long deliverId, String deliverName, String mobile, long orderId, String deliveryDate,
+			String deliveryStatus, String deliveryAddress) {
 		super();
-		this.DeliverId =DeliverId;
-		this.DeliverName = DeliverName;
-		this.Mobile =Mobile;
-		this.DeliveryDate =DeliveryDate;
-		this.DeliveryStatus = DeliveryStatus;
-		this.OrderId =OrderId;
-		this.DeliveryAddress =DeliveryAddress;
+		this.deliverId = deliverId;
+		this.deliverName = deliverName;
+		this.mobile = mobile;
+		this.orderId = orderId;
+		this.deliveryDate = deliveryDate;
+		this.deliveryStatus = deliveryStatus;
+		this.deliveryAddress = deliveryAddress;
 	}
 
 
 	Delivery() {
 	    // Default constructor needed by JPA
 	  }
+
+
 	public Long getDeliverId() {
-		return DeliverId ;
+		return deliverId;
 	}
 
-	public void setDeliverId(Long DeliverId) {
-		this.DeliverId = DeliverId;
-		
+
+	public void setDeliverId(Long deliverId) {
+		this.deliverId = deliverId;
 	}
-	
+
+
 	public String getDeliverName() {
-		return DeliverName ;
+		return deliverName;
 	}
-	public void setDeliverName(String  DeliverName) {
-		this. DeliverName =  DeliverName;
+
+
+	public void setDeliverName(String deliverName) {
+		this.deliverName = deliverName;
 	}
 
 
 	public String getMobile() {
-		return Mobile ;
+		return mobile;
 	}
-	
 
 
-	public void setMobile(String Mobile) {
-		this.Mobile= Mobile;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
-	public String getOrderId() {
-		return OrderId ;
-	}
-	
 
 
-	public void setOrderId(String OrderId) {
-		this.OrderId= OrderId;
+	public long getOrderId() {
+		return orderId;
 	}
-	public String getDeliveryAddress() {
-		return DeliveryAddress ;
-	}
-	
 
 
-	public void setDeliveryAddress(String DeliveryAddress) {
-		this.DeliveryAddress= DeliveryAddress;
+	public void setOrderId(long orderId) {
+		this.orderId = orderId;
 	}
-   
+
+
 	public String getDeliveryDate() {
-		return DeliveryDate ;
+		return deliveryDate;
+	}
+
+
+	public void setDeliveryDate(String deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
+
+
+	public String getDeliveryStatus() {
+		return deliveryStatus;
+	}
+
+
+	public void setDeliveryStatus(String deliveryStatus) {
+		this.deliveryStatus = deliveryStatus;
+	}
+
+
+	public String getDeliveryAddress() {
+		return deliveryAddress;
+	}
+
+
+	public void setDeliveryAddress(String deliveryAddress) {
+		this.deliveryAddress = deliveryAddress;
 	}
 	
-
-
-	public void setDeliveryDate(String DeliveryDate) {
-		this.DeliveryDate= DeliveryDate;
-		
-	}
-	public String DeliveryStatus() {
-		return DeliveryStatus ;
-	}
 	
-
-
-	public void setDeliveryStatus(String DeliveryStatus) {
-		this.DeliveryStatus= DeliveryStatus;
-		
-	}
-
-
-
-
-
 
 }

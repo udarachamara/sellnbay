@@ -64,13 +64,12 @@ public class DeliveryController {
         	delivery.setOrderId(deliveryDetails.getOrderId());
         	delivery.setDeliveryAddress(deliveryDetails. getDeliveryAddress());
         	delivery.setDeliveryDate(deliveryDetails.getDeliveryDate());
-        	delivery.setDeliveryStatus(deliveryDetails.DeliveryStatus());
+        	delivery.setDeliveryStatus(deliveryDetails.getDeliveryStatus());
         	
         	
 			
 			Delivery updateDelivery=deliveryDAO.save(delivery);
 			return ResponseEntity.ok().body(updateDelivery);
-			
 			
 			
 		}

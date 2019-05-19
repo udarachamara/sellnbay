@@ -17,26 +17,27 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef = "customerEntityManagerFactory",
-		transactionManagerRef = "customerTransactionManager",basePackages = {"com.paf.repository.delivery"})
-public class DeliveryConfig {
-	@Bean(name = "deliveryDataSource")
-	  @ConfigurationProperties(prefix = "shasikala.datasource")
+@EnableJpaRepositories(entityManagerFactoryRef = "orderEntityManagerFactory",
+transactionManagerRef = "orderTransactionManager",basePackages = {"com.paf.repository.order"})
+
+public class OrderConfig {
+	
+	 @Bean(name = "orderDataSource")
+	  @ConfigurationProperties(prefix = "safnaj.datasource")
 	  public DataSource dataSource() {
 	    return DataSourceBuilder.create().build();
 	  }
-
-	  @Bean(name = "deliveryEntityManagerFactory")
-	  public LocalContainerEntityManagerFactoryBean deliveryEntityManagerFactory(
-	      EntityManagerFactoryBuilder builder, @Qualifier("deliveryDataSource") DataSource dataSource) {
-	    return builder.dataSource(dataSource).packages("com.paf.model").persistenceUnit("deliveries")
+	 
+	 @Bean(name = "orderEntityManagerFactory")
+	  public LocalContainerEntityManagerFactoryBean orderEntityManagerFactory(
+	      EntityManagerFactoryBuilder builder, @Qualifier("orderDataSource") DataSource dataSource) {
+	    return builder.dataSource(dataSource).packages("com.paf.model").persistenceUnit("orders")
 	        .build();
 	  }
-
-	  @Bean(name = "deliveryTransactionManager")
-	  public PlatformTransactionManager deliveryTransactionManager(
-	      @Qualifier("deliveryEntityManagerFactory") EntityManagerFactory deliveryEntityManagerFactory) {
-	    return new JpaTransactionManager(deliveryEntityManagerFactory);
+	 
+	 @Bean(name = "orderTransactionManager")
+	  public PlatformTransactionManager paymentTransactionManager(
+	      @Qualifier("orderEntityManagerFactory") EntityManagerFactory orderEntityManagerFactory) {
+	    return new JpaTransactionManager(orderEntityManagerFactory);
 	  }
-
 }

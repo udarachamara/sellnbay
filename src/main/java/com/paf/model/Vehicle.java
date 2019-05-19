@@ -1,38 +1,36 @@
 package com.paf.model;
 
-import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "vehicle")
+@Table(name = "vehicles")
 public class Vehicle {
 	  @Id
 	  @GeneratedValue(strategy = GenerationType.IDENTITY)
-	  @Column(name = "Vehicle_ID")
-	  private String VehicleId;
+	  @Column(name = "VEHICLE_ID")
+	  private long vehicleId;
 
-	  @Column(name = "Vehicle_Number")
-	  private String VehicleNumber;
+	  @Column(name = "VEHICLE_NUMBER")
+	  private String vehicleNumber;
 	  
-	  @Column(name = "Vehicle_Type")
-	  private String VehicleType;
+	  @Column(name = "VEHICLE_TYPE")
+	  private String vehicleType;
 	 
 	 
 
 
-	public Vehicle(String VehicleId, String VehicleNumber, String VehicleType)
+	public Vehicle(long vehicleId, String vehicleNumber, String vehicleType)
 			 {
 		super();
-		this.VehicleId = VehicleId;
-		this.VehicleNumber = VehicleNumber;
-		this. VehicleType=VehicleType;
+		this.vehicleId = vehicleId;
+		this.vehicleNumber = vehicleNumber;
+		this. vehicleType=vehicleType;
 		
 	}
 
@@ -42,33 +40,33 @@ public class Vehicle {
 	  }
 
 
-	public String getVehicleId() {
-		return VehicleId ;
+	public long getVehicleId() {
+		return vehicleId ;
 	}
 
 
-	public void setVehicleId(String VehicleId) {
-		this.VehicleId = VehicleId;
+	public void setVehicleId(long vehicleId) {
+		this.vehicleId = vehicleId;
 	}
 
 
 	public String getVehicleNumber() {
-		return VehicleNumber ;
+		return vehicleNumber ;
 	}
 
 
-	public void setVehicleNumber(String VehicleNumber) {
-		this.VehicleNumber= VehicleNumber;
+	public void setVehicleNumber(String vehicleNumber) {
+		this.vehicleNumber= vehicleNumber;
 	}
 
 
 
 	public String getVehicleType() {
-		return VehicleType;
+		return vehicleType;
 	}
 
 
-	public void setVehicleType(String VehicleType) {
-		this.VehicleType = VehicleType;
+	public void setVehicleType(String vehicleType) {
+		this.vehicleType = vehicleType;
 	}
 }

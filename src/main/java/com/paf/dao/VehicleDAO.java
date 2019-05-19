@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.paf.model.Vehicle;
-import com.paf.repository.vehicle.VehicleRepository;
+import com.paf.repository.delivery.VehicleRepository;
 
 public class VehicleDAO {@Autowired
 	VehicleRepository vehicleRepository;
@@ -25,7 +25,7 @@ public class VehicleDAO {@Autowired
 	
 	
 	/*get an vehicle by id*/
-	public Vehicle findOne(String Vehicle_ID) {
+	public Vehicle findOne(long Vehicle_ID) {
 		return vehicleRepository.findOne(Vehicle_ID);
 	}
 
