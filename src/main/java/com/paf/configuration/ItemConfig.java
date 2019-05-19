@@ -19,12 +19,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "itemEntityManagerFactory",
-		transactionManagerRef = "itemTransactionManager",basePackages = {"com.paf.repository.item"})
+		transactionManagerRef = "itemTransactionManager",basePackages = {"com.paf.repository.item","com.paf.repository.seller"})
 public class ItemConfig {
 
   @Primary
   @Bean(name = "itemDataSource")
-  @ConfigurationProperties(prefix = "safnaj.datasource")
+  @ConfigurationProperties(prefix = "dilshan.datasource")
   public DataSource dataSource() {
     return DataSourceBuilder.create().build();
   }
