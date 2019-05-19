@@ -35,7 +35,7 @@ public class Vehicle {
 	}
 
 
-	Vehicle() {
+	public Vehicle() {
 	    // Default constructor needed by JPA
 	  }
 
