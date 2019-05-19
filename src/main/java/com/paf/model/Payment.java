@@ -17,7 +17,7 @@ public class Payment {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "PAYMENT_ID")
-  private int id;
+  private Long id;
 
   @Column(name = "ORDER_ID")
   private int orderId;
@@ -36,7 +36,7 @@ public class Payment {
 
   
 
-  public Payment(int id, int orderId,int transactionId,String paymentMethod, String paymentStatus, Timestamp paymentCreateAt) {
+  public Payment(Long id, int orderId,int transactionId,String paymentMethod, String paymentStatus, Timestamp paymentCreateAt) {
 	super();
 	this.id = id;
 	this.orderId = orderId;
@@ -52,12 +52,12 @@ public Payment() {
   }
 
 
-public int getId() {
+public Long getId() {
 	return id;
 }
 
 
-public void setId(int id) {
+public void setId(Long id) {
 	this.id = id;
 }
 
