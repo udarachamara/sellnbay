@@ -31,52 +31,53 @@ Use Post Man to Check RESTful URLs
 
 Micro-Service URLs
 --------------
+#### Items
+* localhost:8080/items  GET
+* localhost:8080/items/{id}  GET
+* localhost:8080/items  POST
+* localhost:8080/items/{id}  PUT
+* localhost:8080/items/{id}  DELETE
 
-localhost:8080/items  GET
-localhost:8080/items/{id}  GET
-localhost:8080/items  POST
-localhost:8080/items/{id}  PUT
-localhost:8080/items/{id}  DELETE
+#### Customers
+* localhost:8080/customers  GET
+* localhost:8080/customers/{id}  GET
+* localhost:8080/customers  POST
+* localhost:8080/customers/{id}  PUT
+* localhost:8080/customers/{id}  DELETE
 
-localhost:8080/customers  GET
-localhost:8080/customers/{id}  GET
-localhost:8080/customers  POST
-localhost:8080/customers/{id}  PUT
-localhost:8080/customers/{id}  DELETE
+#### Sellers
+* localhost:8080/sellers  GET
+* localhost:8080/sellers/{id}  GET
+* localhost:8080/sellers  POST
+* localhost:8080/sellers/{id}  PUT
+* localhost:8080/sellers/{id}  DELETE
 
-localhost:8080/sellers  GET
-localhost:8080/sellers/{id}  GET
-localhost:8080/sellers  POST
-localhost:8080/sellers/{id}  PUT
-localhost:8080/sellers/{id}  DELETE
+#### Orders
+* localhost:8080/shopping/orders  GET
+* localhost:8080/shopping/orders/{id}  GET
+* localhost:8080/shopping/orders  POST
+* localhost:8080/shopping/orders/{id}  PUT
+* localhost:8080/shopping/orders/{id}  DELETE
 
-localhost:8080/shopping/orders  GET
-localhost:8080/shopping/orders/{id}  GET
-localhost:8080/shopping/orders  POST
-localhost:8080/shopping/orders/{id}  PUT
-localhost:8080/shopping/orders/{id}  DELETE
+#### Payements
+* localhost:8080/payments  GET
+* localhost:8080/payments/{id}  GET
+* localhost:8080/payments  POST
+* localhost:8080/payments/{id}  PUT
+* localhost:8080/payments/{id}  DELETE
 
-localhost:8080/payments  GET
-localhost:8080/payments/{id}  GET
-localhost:8080/payments  POST
-localhost:8080/payments/{id}  PUT
-localhost:8080/payments/{id}  DELETE
+#### simple payment handler
 
-<=== simple payment handler ==>
+* localhost:8080/accounts  GET
+* localhost:8080/accounts/{id}  GET
+* localhost:8080/accounts  POST
+* localhost:8080/accounts/{id}  PUT
+* localhost:8080/accounts/{id}  DELETE
 
-localhost:8080/accounts  GET
-localhost:8080/accounts/{id}  GET
-localhost:8080/accounts  POST
-localhost:8080/accounts/{id}  PUT
-localhost:8080/accounts/{id}  DELETE
-
-localhost:8080/transactions  GET
-localhost:8080/transactions/{id}  GET
-localhost:8080/transactions  POST
-localhost:8080/transactions/{id}  PUT
-localhost:8080/transactions/{id}  DELETE
+* localhost:8080/transactions  GET
+* localhost:8080/transactions/{id}  GET
+* localhost:8080/transactions  POST
+* localhost:8080/transactions/{id}  PUT
+* localhost:8080/transactions/{id}  DELETE
 
 
-
-----------------
->>>>>>> 8b813039b49716f79acb1ccaba0835b4049becc0
