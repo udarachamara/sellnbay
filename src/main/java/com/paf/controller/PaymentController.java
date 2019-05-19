@@ -20,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 import com.paf.model.Payment;
 import com.paf.model.PaymentRequest;
 import com.paf.model.SuccessResponse;
+import com.paf.model.UpdatePaymentTransaction;
 import com.google.gson.Gson;
 import com.paf.dao.PaymentDAO;
 @RestController
@@ -52,7 +53,7 @@ public class PaymentController {
 		if(responseData.getStatus() == true) {
 			payment.setOrderId(paymentRequest.getOrderId());
 			payment.setPaymentMethod("visa");
-			int transactionId = Integer.parseInt(responseData.getResponseText());
+			long transactionId = Long.parseLong(responseData.getResponseText());
 			payment.setTransactionId(transactionId);
 			payment.setPaymentStatus("complete");
 			Date today = new Date();
@@ -105,7 +106,6 @@ public class PaymentController {
 		payment.setPaymentMethod(paymentDetails.getPaymentMethod());
 		payment.setPaymentStatus(paymentDetails.getPaymentStatus());
 		payment.setPaymentCreateAt(paymentDetails.getPaymentCreateAt());
-		
 		Payment updatePayment=paymentDAO.save(payment);
 		return ResponseEntity.ok().body(updatePayment);
 		
@@ -121,11 +121,33 @@ public class PaymentController {
 		if(payment==null) {
 			return ResponseEntity.notFound().build();
 		}
-		paymentDAO.delete(payment);
+		boolean status = this.cancelPayment(paymentid);
+		if(status)
+			paymentDAO.delete(payment);
 		
 		return ResponseEntity.ok().build();
 		
 		
+	}
+	
+	public boolean cancelPayment(Long paymentId) {
+		
+		Payment payment= paymentDAO.findOne(paymentId);
+		UpdatePaymentTransaction updatePaymentTransaction = new UpdatePaymentTransaction();
+		
+		updatePaymentTransaction.setTransactionId(payment.getTransactionId());
+		updatePaymentTransaction.setTransactionType("debit");
+		
+		final String uri = "http://localhost:8080/accounts/updatePayment";
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<?> response = restTemplate.postForEntity( uri, updatePaymentTransaction, String.class );
+		Gson gson = new Gson();
+		SuccessResponse responseData = gson.fromJson(response.getBody().toString(), SuccessResponse.class);
+		
+		if(responseData.getStatus()) 
+			return true;
+		
+		return false;
 	}
 
 }

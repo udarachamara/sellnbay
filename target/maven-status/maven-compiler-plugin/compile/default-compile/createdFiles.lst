@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+com\paf\configuration\AccountConfig.class
+>>>>>>> ddaac2a6461147356be2e54e746b72e1641a42e7
 com\paf\controller\CustomerController.class
 com\paf\model\Transaction.class
 com\paf\repository\account\AccountRepository.class
@@ -10,7 +14,10 @@ com\paf\repository\item\ItemRepository.class
 com\paf\controller\ItemController.class
 com\paf\model\SuccessResponse.class
 com\paf\dao\AccountDAO.class
+<<<<<<< HEAD
 com\paf\configuration\TransactionConfig.class
+=======
+>>>>>>> ddaac2a6461147356be2e54e746b72e1641a42e7
 com\paf\repository\customer\CustomerRepository.class
 com\paf\dao\TransactionDAO.class
 com\paf\model\Customer.class
