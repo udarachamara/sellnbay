@@ -63,7 +63,7 @@ public class Seller {
 		}
 	  
 	  
-	  Seller() {
+	  public Seller() {
 		    // Default constructor needed by JPA
 		  
 	  }

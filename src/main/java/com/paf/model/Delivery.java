@@ -19,6 +19,9 @@ public class Delivery {
 	  @Column(name = "DELIVER_NAME")
 	  private String deliverName;
 	  
+	  @Column(name = "VEHICLE_NUMBER")
+	  private String vehicleNumber;
+	  
 	  @Column(name = "MOBILE")
 	  private String mobile;
 	  
@@ -37,11 +40,12 @@ public class Delivery {
 	  
 
 
-	public Delivery(Long deliverId, String deliverName, String mobile, long orderId, String deliveryDate,
+	public Delivery(Long deliverId, String deliverName, String vehicleNumber ,String mobile, long orderId, String deliveryDate,
 			String deliveryStatus, String deliveryAddress) {
 		super();
 		this.deliverId = deliverId;
 		this.deliverName = deliverName;
+		this.vehicleNumber = vehicleNumber;
 		this.mobile = mobile;
 		this.orderId = orderId;
 		this.deliveryDate = deliveryDate;
@@ -50,7 +54,7 @@ public class Delivery {
 	}
 
 
-	Delivery() {
+	public Delivery() {
 	    // Default constructor needed by JPA
 	  }
 
@@ -72,6 +76,16 @@ public class Delivery {
 
 	public void setDeliverName(String deliverName) {
 		this.deliverName = deliverName;
+	}
+
+
+	public String getVehicleNumber() {
+		return vehicleNumber;
+	}
+
+
+	public void setVehicleNumber(String vehicleNumber) {
+		this.vehicleNumber = vehicleNumber;
 	}
 
 

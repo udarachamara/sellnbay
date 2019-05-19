@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2019 at 12:47 PM
+-- Generation Time: May 19, 2019 at 01:48 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.26
 
@@ -31,6 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `deliveries` (
   `DELIVER_ID` int(11) NOT NULL,
   `DELIVER_NAME` varchar(45) NOT NULL,
+  `VEHICLE_NUMBER` varchar(20) NOT NULL,
   `MOBILE` varchar(15) NOT NULL,
   `ORDER_ID` int(11) NOT NULL,
   `DELIVER_DATE` varchar(10) NOT NULL,
