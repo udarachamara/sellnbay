@@ -1,14 +1,5 @@
 # SellNBye E-commerce System
 
-<<<<<<< HEAD
-#first install springboot in market place
-<<<<<<< HEAD
-
-#seller
-=======
-#fhhggj
->>>>>>> 7d80f1c7e11b6726ee00ec72f92edfb80b4a0ee5
-=======
 ### Functionalities:
 
 1. **CRUD Operations** like
@@ -31,13 +22,14 @@
 5. Configuring tomcat with Eclipse (windows) -(https://javatutorial.net/run-tomcat-from-eclipse)
 6. Installation of maven in eclipse - (https://stackoverflow.com/questions/8620127/maven-in-eclipse-step-by-step-installation)
 7. Clone the repository and import it to eclipse
-8. Run your MySQL Database/Wamp Server.
-9. Run Maven Build
-10. Run as Spring Boot Application
+8. Install Spring Tools in Eclipse IDE Marketplace.
+9. Run your MySQL Database/Wamp Server.
+10. Run Maven Build
+11. Run as Spring Boot Application
 
-use postman
+Use Post Man to Check RESTful URLs
 
-service url
+Micro-Service URLs
 --------------
 
 localhost:8080/items  GET
