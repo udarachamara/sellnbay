@@ -27,7 +27,8 @@
 10. Run Maven Build
 11. Run as Spring Boot Application
 
-Use Post Man to Check RESTful URLs
+###### Use Postman to Check RESTful URLs, Download Postman [Here] (https://www.getpostman.com/)
+
 
 Micro-Service URLs
 --------------
