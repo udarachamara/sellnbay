@@ -60,6 +60,17 @@ Micro-Service URLs
 * localhost:8080/shopping/orders/{id}  PUT
 * localhost:8080/shopping/orders/{id}  DELETE
 
+JSON Example :
+```
+{
+	"id": 1,
+	"noOfItems": 5,
+	"total": 5000,
+	"orderCreatedAt": "2017-06-11",
+	"payementStatus": "success"
+}
+```
+
 #### Payements
 * localhost:8080/payments  GET
 * localhost:8080/payments/{id}  GET
