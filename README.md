@@ -79,7 +79,6 @@ JSON Example :
 * localhost:8080/payments/{id}  DELETE
 
 #### simple payment handler
-
 * localhost:8080/accounts  GET
 * localhost:8080/accounts/{id}  GET
 * localhost:8080/accounts  POST
