@@ -1,8 +1,6 @@
 # SellNBye E-commerce System
 
 ### Functionalities:
-
-1. **CRUD Operations** like
 * CRUD Operations for Product
 * CRUD Operations for Order
 
